@@ -333,7 +333,7 @@ class Navigation extends React.PureComponent {
                                                 >
                                                     {user.role === ROLES.Admin
                                                         ? 'Customer Orders'
-                                                        : 'Order List'}
+                                                        : 'My Orders'}
                                                 </DropdownItem>
                                                 {user.role === ROLES.Admin && (
                                                     <DropdownItem

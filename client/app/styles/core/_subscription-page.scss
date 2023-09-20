@@ -1,0 +1,77 @@
+.subscription-page {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.subscription-header {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.subscription-options {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+
+    .subscription-option {
+        border: 2px solid #ccc;
+        padding: 20px;
+        width: 200px;
+        margin: 0 10px;
+        transition: transform 0.3s;
+
+        h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+
+        &:hover {
+            transform: translateY(-10px);
+        }
+
+        &.free {
+            border-color: #dbdbdd;
+
+            .currnt-plan {
+                // background-color: #ff0000;
+
+                color: #ff0000;
+            }
+        }
+        &.gold {
+            border-color: #ffd700;
+            .currnt-plan {
+                // background-color: #ff0000;
+
+                color: #ff0000;
+            }
+        }
+
+        &.platinum {
+            border-color: #00ced1;
+            .currnt-plan {
+                // background-color: #ff0000;
+
+                color: #ff0000;
+            }
+        }
+
+        &.gold button {
+            background-color: #ffd700;
+        }
+
+        &.platinum button {
+            background-color: #00ced1;
+        }
+    }
+}
