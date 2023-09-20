@@ -4,165 +4,197 @@
  *
  */
 
-import React from 'react';
+import React from 'react'
 
-import { Row, Col } from 'reactstrap';
+import { Row, Col } from 'reactstrap'
 
-import { ROLES } from '../../../constants';
-import Input from '../../Common/Input';
-import Switch from '../../Common/Switch';
-import Button from '../../Common/Button';
-import SelectOption from '../../Common/SelectOption';
+import { ROLES } from '../../../constants'
+import Input from '../../Common/Input'
+import Switch from '../../Common/Switch'
+import Button from '../../Common/Button'
+import SelectOption from '../../Common/SelectOption'
 
 const taxableSelect = [
-  { value: 1, label: 'Yes' },
-  { value: 0, label: 'No' }
-];
+    { value: 1, label: 'Yes' },
+    { value: 0, label: 'No' },
+]
 
-const AddProduct = props => {
-  const {
-    user,
-    productFormData,
-    formErrors,
-    productChange,
-    addProduct,
-    brands,
-    image
-  } = props;
+const AddProduct = (props) => {
+    const {
+        user,
+        productFormData,
+        formErrors,
+        productChange,
+        addProduct,
+        brands,
+        image,
+    } = props
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    addProduct();
-  };
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        addProduct()
+    }
 
-  return (
-    <div className='add-product'>
-      <form onSubmit={handleSubmit} noValidate>
-        <Row>
-          <Col xs='12' lg='6'>
-            <Input
-              type={'text'}
-              error={formErrors['sku']}
-              label={'Sku'}
-              name={'sku'}
-              placeholder={'Product Sku'}
-              value={productFormData.sku}
-              onInputChange={(name, value) => {
-                productChange(name, value);
-              }}
-            />
-          </Col>
-          <Col xs='12' lg='6'>
-            <Input
-              type={'text'}
-              error={formErrors['name']}
-              label={'Name'}
-              name={'name'}
-              placeholder={'Product Name'}
-              value={productFormData.name}
-              onInputChange={(name, value) => {
-                productChange(name, value);
-              }}
-            />
-          </Col>
-          <Col xs='12' md='12'>
-            <Input
-              type={'textarea'}
-              error={formErrors['description']}
-              label={'Description'}
-              name={'description'}
-              placeholder={'Product Description'}
-              value={productFormData.description}
-              onInputChange={(name, value) => {
-                productChange(name, value);
-              }}
-            />
-          </Col>
-          <Col xs='12' lg='6'>
-            <Input
-              type={'number'}
-              error={formErrors['quantity']}
-              label={'Quantity'}
-              name={'quantity'}
-              decimals={false}
-              placeholder={'Product Quantity'}
-              value={productFormData.quantity}
-              onInputChange={(name, value) => {
-                productChange(name, value);
-              }}
-            />
-          </Col>
-          <Col xs='12' lg='6'>
-            <Input
-              type={'number'}
-              error={formErrors['price']}
-              label={'Price'}
-              name={'price'}
-              min={1}
-              placeholder={'Product Price'}
-              value={productFormData.price}
-              onInputChange={(name, value) => {
-                productChange(name, value);
-              }}
-            />
-          </Col>
-          <Col xs='12' md='12'>
-            <SelectOption
-              error={formErrors['taxable']}
-              label={'Taxable'}
-              name={'taxable'}
-              options={taxableSelect}
-              value={productFormData.taxable}
-              handleSelectChange={value => {
-                productChange('taxable', value);
-              }}
-            />
-          </Col>
-          <Col xs='12' md='12'>
-            <SelectOption
-              disabled={user.role === ROLES.Merchant}
-              error={formErrors['brand']}
-              name={'brand'}
-              label={'Select Brand'}
-              value={
-                user.role === ROLES.Merchant ? brands[1] : productFormData.brand
-              }
-              options={brands}
-              handleSelectChange={value => {
-                productChange('brand', value);
-              }}
-            />
-          </Col>
-          <Col xs='12' md='12'>
-            <Input
-              type={'file'}
-              error={formErrors['file']}
-              name={'image'}
-              label={'file'}
-              placeholder={'Please Upload Image'}
-              value={image}
-              onInputChange={(name, value) => {
-                productChange(name, value);
-              }}
-            />
-          </Col>
-          <Col xs='12' md='12' className='my-2'>
-            <Switch
-              id={'active-product'}
-              name={'isActive'}
-              label={'Active?'}
-              checked={productFormData.isActive}
-              toggleCheckboxChange={value => productChange('isActive', value)}
-            />
-          </Col>
-        </Row>
-        <hr />
-        <div className='add-product-actions'>
-          <Button type='submit' text='Add Product' />
+    return (
+        <div className="add-product">
+            <form onSubmit={handleSubmit} noValidate>
+                <Row>
+                    <Col xs="12" lg="6">
+                        <Input
+                            type={'text'}
+                            error={formErrors['sku']}
+                            label={'Sku'}
+                            name={'sku'}
+                            placeholder={'Product Sku'}
+                            value={productFormData.sku}
+                            onInputChange={(name, value) => {
+                                productChange(name, value)
+                            }}
+                        />
+                    </Col>
+                    <Col xs="12" lg="6">
+                        <Input
+                            type={'text'}
+                            error={formErrors['name']}
+                            label={'Name'}
+                            name={'name'}
+                            placeholder={'Product Name'}
+                            value={productFormData.name}
+                            onInputChange={(name, value) => {
+                                productChange(name, value)
+                            }}
+                        />
+                    </Col>
+                    <Col xs="12" md="12">
+                        <Input
+                            type={'textarea'}
+                            error={formErrors['description']}
+                            label={'Description'}
+                            name={'description'}
+                            placeholder={'Product Description'}
+                            value={productFormData.description}
+                            onInputChange={(name, value) => {
+                                productChange(name, value)
+                            }}
+                        />
+                    </Col>
+                    <Col xs="12" lg="6">
+                        <Input
+                            type={'number'}
+                            error={formErrors['quantity']}
+                            label={'Quantity'}
+                            name={'quantity'}
+                            decimals={false}
+                            placeholder={'Product Quantity'}
+                            value={productFormData.quantity}
+                            onInputChange={(name, value) => {
+                                productChange(name, value)
+                            }}
+                        />
+                    </Col>
+                    <Col xs="12" lg="6">
+                        <Input
+                            type={'number'}
+                            error={formErrors['price']}
+                            label={'Price'}
+                            name={'price'}
+                            min={1}
+                            placeholder={'Product Price'}
+                            value={productFormData.price}
+                            onInputChange={(name, value) => {
+                                productChange(name, value)
+                            }}
+                        />
+                    </Col>
+                    <Col xs="12" lg="6">
+                        <Input
+                            type={'number'}
+                            error={formErrors['goldMemberPrice']}
+                            label={'Gold Member Price'}
+                            name={'goldMemberPrice'}
+                            min={1}
+                            placeholder={'Product Price'}
+                            value={productFormData.goldMemberPrice}
+                            onInputChange={(name, value) => {
+                                productChange(name, value)
+                            }}
+                        />
+                    </Col>
+                    <Col xs="12" lg="6">
+                        <Input
+                            type={'number'}
+                            error={formErrors['platinumMemberPrice']}
+                            label={'Platinum Member Price'}
+                            name={'platinumMemberPrice'}
+                            min={1}
+                            placeholder={'Product Price'}
+                            value={productFormData.platinumMemberPrice}
+                            onInputChange={(name, value) => {
+                                productChange(name, value)
+                            }}
+                        />
+                    </Col>
+                    <Col xs="12" md="12">
+                        <SelectOption
+                            error={formErrors['taxable']}
+                            label={'Taxable'}
+                            name={'taxable'}
+                            options={taxableSelect}
+                            value={productFormData.taxable}
+                            handleSelectChange={(value) => {
+                                productChange('taxable', value)
+                            }}
+                        />
+                    </Col>
+                    <Col xs="12" md="12">
+                        <SelectOption
+                            disabled={user.role === ROLES.Merchant}
+                            error={formErrors['brand']}
+                            name={'brand'}
+                            label={'Select Brand'}
+                            value={
+                                user.role === ROLES.Merchant
+                                    ? brands[1]
+                                    : productFormData.brand
+                            }
+                            options={brands}
+                            handleSelectChange={(value) => {
+                                productChange('brand', value)
+                            }}
+                        />
+                    </Col>
+                    <Col xs="12" md="12">
+                        <Input
+                            type={'file'}
+                            error={formErrors['file']}
+                            name={'image'}
+                            label={'file'}
+                            placeholder={'Please Upload Image'}
+                            value={image}
+                            onInputChange={(name, value) => {
+                                productChange(name, value)
+                            }}
+                        />
+                    </Col>
+                    <Col xs="12" md="12" className="my-2">
+                        <Switch
+                            id={'active-product'}
+                            name={'isActive'}
+                            label={'Active?'}
+                            checked={productFormData.isActive}
+                            toggleCheckboxChange={(value) =>
+                                productChange('isActive', value)
+                            }
+                        />
+                    </Col>
+                </Row>
+                <hr />
+                <div className="add-product-actions">
+                    <Button type="submit" text="Add Product" />
+                </div>
+            </form>
         </div>
-      </form>
-    </div>
-  );
-};
+    )
+}
 
-export default AddProduct;
+export default AddProduct
