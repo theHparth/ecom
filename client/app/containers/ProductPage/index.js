@@ -57,7 +57,7 @@ class ProductPage extends React.PureComponent {
             reviewChange,
             reviewFormErrors,
         } = this.props
-        
+
         return (
             <div className="product-shop">
                 {isLoading ? (
@@ -120,51 +120,43 @@ class ProductPage extends React.PureComponent {
                                             <p className="item-desc">
                                                 {product.description}
                                             </p>
-                                            <p className="price">
-                                                ${product.price}
-                                            </p>
-                                            {user.role === ROLES.Member && (
+                                            {product.price !== null ? (
+                                                <p className="price">
+                                                    ${product.price}
+                                                </p>
+                                            ) : (
+                                                <Link to="/dashboard/subscription">
+                                                    {' '}
+                                                    <h3>
+                                                        Subscribe to check price
+                                                    </h3>
+                                                </Link>
+                                            )}
+                                            {(product.price !== null &&
+                                                user.role) === ROLES.Member && (
                                                 <p className="price">
                                                     Regular Price $
                                                     {product.regularPrice}
                                                 </p>
                                             )}
                                         </div>
-                                        <div className="item-customize">
-                                            <Input
-                                                type={'number'}
-                                                error={
-                                                    shopFormErrors['quantity']
-                                                }
-                                                label={'Quantity'}
-                                                name={'quantity'}
-                                                decimals={false}
-                                                min={1}
-                                                max={product.inventory}
-                                                placeholder={'Product Quantity'}
-                                                disabled={
-                                                    product.inventory <= 0 &&
-                                                    !shopFormErrors['quantity']
-                                                }
-                                                value={productShopData.quantity}
-                                                onInputChange={(
-                                                    name,
-                                                    value
-                                                ) => {
-                                                    productShopChange(
-                                                        name,
-                                                        value
-                                                    )
-                                                }}
-                                            />
-                                        </div>
-                                        <div className="my-4 item-share">
-                                            <SocialShare product={product} />
-                                        </div>
-                                        <div className="item-actions">
-                                            {itemInCart ? (
-                                                <Button
-                                                    variant="primary"
+                                        {product.price !== null && (
+                                            <div className="item-customize">
+                                                <Input
+                                                    type={'number'}
+                                                    error={
+                                                        shopFormErrors[
+                                                            'quantity'
+                                                        ]
+                                                    }
+                                                    label={'Quantity'}
+                                                    name={'quantity'}
+                                                    decimals={false}
+                                                    min={1}
+                                                    max={product.inventory}
+                                                    placeholder={
+                                                        'Product Quantity'
+                                                    }
                                                     disabled={
                                                         product.inventory <=
                                                             0 &&
@@ -172,33 +164,67 @@ class ProductPage extends React.PureComponent {
                                                             'quantity'
                                                         ]
                                                     }
-                                                    text="Remove From Bag"
-                                                    className="bag-btn"
-                                                    icon={<BagIcon />}
-                                                    onClick={() =>
-                                                        handleRemoveFromCart(
-                                                            product
+                                                    value={
+                                                        productShopData.quantity
+                                                    }
+                                                    onInputChange={(
+                                                        name,
+                                                        value
+                                                    ) => {
+                                                        productShopChange(
+                                                            name,
+                                                            value
                                                         )
-                                                    }
+                                                    }}
                                                 />
-                                            ) : (
-                                                <Button
-                                                    variant="primary"
-                                                    disabled={
-                                                        product.quantity <= 0 &&
-                                                        !shopFormErrors[
-                                                            'quantity'
-                                                        ]
-                                                    }
-                                                    text="Add To Bag"
-                                                    className="bag-btn"
-                                                    icon={<BagIcon />}
-                                                    onClick={() =>
-                                                        handleAddToCart(product)
-                                                    }
-                                                />
-                                            )}
+                                            </div>
+                                        )}
+                                        <div className="my-4 item-share">
+                                            <SocialShare product={product} />
                                         </div>
+                                        {product.price !== null && (
+                                            <div className="item-actions">
+                                                {itemInCart ? (
+                                                    <Button
+                                                        variant="primary"
+                                                        disabled={
+                                                            product.inventory <=
+                                                                0 &&
+                                                            !shopFormErrors[
+                                                                'quantity'
+                                                            ]
+                                                        }
+                                                        text="Remove From Bag"
+                                                        className="bag-btn"
+                                                        icon={<BagIcon />}
+                                                        onClick={() =>
+                                                            handleRemoveFromCart(
+                                                                product
+                                                            )
+                                                        }
+                                                    />
+                                                ) : (
+                                                    <Button
+                                                        variant="primary"
+                                                        disabled={
+                                                            product.quantity <=
+                                                                0 &&
+                                                            !shopFormErrors[
+                                                                'quantity'
+                                                            ]
+                                                        }
+                                                        text="Add To Bag"
+                                                        className="bag-btn"
+                                                        icon={<BagIcon />}
+                                                        onClick={() =>
+                                                            handleAddToCart(
+                                                                product
+                                                            )
+                                                        }
+                                                    />
+                                                )}
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             </Col>
